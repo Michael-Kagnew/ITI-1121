@@ -16,19 +16,15 @@ public class A1_Q4_300113347 {
 		ArrayList <String> rawList=new ArrayList <String>();
 		
 		
-		//while (true) { This would be used to continually get new input
 			
 			try {
 				 txtFile= new Scanner (file); //Takes the input of the File object, and attempts to read it
-				//break;
 				
 				
 			} catch (FileNotFoundException e) {
 				System.out.println("Please input the name of the file");
-				//file=new File(fileInput.nextLine());
 				}
 					
-		//}
 		
 		while (txtFile.hasNextLine()) {
 			String textLine= txtFile.nextLine().strip();
@@ -62,7 +58,7 @@ public class A1_Q4_300113347 {
 		for (String x: L) {
 			if (!(x.equals("*"))){
 				System.out.println(x);
-				temp.merge(x, 1, Integer::sum);
+				temp.merge(x, 1, Integer::sum);  //Increases the value depending on the number of times the key is encountered
 			}
 			
 		
