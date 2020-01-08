@@ -1,9 +1,14 @@
+//Author: Michael Kagnew
+//Student Number: 300113347
+//Course: ITI 1121 A
+//Assignment: 1
+//Question 1
 import java.util.Scanner;
 
-/*course: ITI 1120
- Assignment: number 3
- Kagnew, Michael
-300113347*/
+/*
+[PUT CLASS DESCREPITION HERE AS STATED BY JAVADOC]
+
+*/
 public class A1_Q1_300113347 {
 	
 	public static int number_divisible(int [] array, int n) {
@@ -25,11 +30,11 @@ public class A1_Q1_300113347 {
 	int x = A1_Q1_300113347.number_divisible(new int[] {3,4,5}, 3); 
 	System.out.println(x);
 	*/
-		
+	StudentInfo.display(); // NEEDED AT ALL ASSIGNMENTS
 	Scanner input=new Scanner(System.in);
 	System.out.println("input your values");
 	String val=input.nextLine();
-	String [] arr=val.strip().split(" ");
+	String [] arr=val.strip().split("\\s+");
 	
 	int [] arrayNum=new int[arr.length];
 	
@@ -38,7 +43,8 @@ public class A1_Q1_300113347 {
 		arrayNum[y]=Integer.parseInt(arr[y]);
 		
 	}
-	int x = A1_Q1_300113347.number_divisible(arrayNum, 3); 
+
+	int x = number_divisible(arrayNum, 3); 
 
 	System.out.println(x);
 }

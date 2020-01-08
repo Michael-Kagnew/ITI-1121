@@ -1,3 +1,9 @@
+//Author: Michael Kagnew
+//Student Number: 300113347
+//Course: ITI 1121 A
+//Assignment: 1
+//Question 4
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Array;
@@ -57,7 +63,6 @@ public class A1_Q4_300113347 {
 		
 		for (String x: L) {
 			if (!(x.equals("*"))){
-				System.out.println(x);
 				temp.merge(x, 1, Integer::sum);  //Increases the value depending on the number of times the key is encountered
 			}
 			
@@ -71,7 +76,6 @@ public class A1_Q4_300113347 {
 			if ( value%2==0) {
 				for (int x=0; x<value; x++) {
 					
-					clean_board.add(key); 	
 				}
 			
 			}
@@ -94,7 +98,6 @@ public class A1_Q4_300113347 {
 		
 		Map <String, Integer> temp=new HashMap <String, Integer>();
 		for (String x: L) {
-				System.out.println(x);
 				temp.merge(x, 1, Integer::sum);
 			}
 			
@@ -114,21 +117,20 @@ public class A1_Q4_300113347 {
 	
 
 	public static void main(String[] args) {
-		
+
+		StudentInfo.display();
 		Scanner fileInput = new Scanner(System.in); //Take the file input in cmd
 		System.out.print("please input the the name of the text file: ");
 		
-		
 		File file= new File(fileInput.nextLine().strip());   //Opens the file from the cmd line
-		
 		ArrayList<String>  raw=A1_Q4_300113347.read_raw(file);          //Puts the text file into an array, unedited
-		
 		ArrayList <String> clean=A1_Q4_300113347.clean_up(raw);
-		
 		boolean rig=A1_Q4_300113347.is_rigorous(clean);
 		
 		System.out.println(raw);
+		System.out.println("this is the file without editing");
 		System.out.println(clean);
+		System.out.println("This is edited");
 		System.out.println(rig);
 		//String [] hi= {"o", "o", "l", "g"};
 		//System.out.println(Arrays.toString(hi));
