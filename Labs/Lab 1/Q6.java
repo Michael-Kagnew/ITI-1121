@@ -1,10 +1,11 @@
 import java.util.Scanner;
-import java.util.Collection;
+import java.util.Arrays;
 
 public class Q6{
 	public static void main(String[] args){
 		Scanner input= new Scanner (System.in);
-		double [] grades= new double[10];
+		int size = input.nextInt();
+		double [] grades= new double[size];
 
 		for (int x=0; x<10; x++){
 			System.out.println("Please input a grade");
@@ -12,7 +13,8 @@ public class Q6{
 		}
 
 		System.out.println("the average is " + calculateAverage(grades));
-
+		System.out.println("the median is " + calculateMedian(grades));
+		System.out.println("Number that passed is " + calculateNumberPassed(grades) + "and number that faield is " + calculateNumberFailed(grades));
 	}
 
 	public static double calculateAverage(double[] notes){
@@ -20,21 +22,26 @@ public class Q6{
 		for (double x: notes){
 			sum+=x;
 		}
-		double avg= sum/10;
+		double avg= sum/notes.length;
 		return avg;
 	}
 
 	public static double calculateMedian(double[] notes){
-		Collections.sort(notes);
+		Arrays.sort(notes);
+		if (notes.length % 2 == 0){
+			return ((notes[(notes.length)/2-1] + notes[(notes.length)/2])/2);
+		} else{
+			return(notes[(notes.length)/2]);
+		}
 
-		return ((notes[5]+notes[6])/2);
+		
 	}
 
 	public static int calculateNumberFailed(double[] notes){
 		int count=0;
 
 		for (double x: notes){
-			if (x<50){
+			if (x<50.0){
 				count++;
 			}
 		}
@@ -44,7 +51,6 @@ public class Q6{
 	public static int calculateNumberPassed(double[] notes){
 		int count=0;
 
-		return (10-calculateNumberFailed(notes));
+		return (notes.length-calculateNumberFailed(notes));
 	}
-*/
 }
