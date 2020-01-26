@@ -6,14 +6,18 @@
  * the game as players are making moves.
  *
  * @author Guy-Vincent Jourdan, University of Ottawa
+ 			Michael Kagnew, Univeristy of Ottawa
+
  */
+import Java.Util.Arrays;
+
 public class TicTacToeGame {
 
 // FINISH THE VARIABLE DECLARATION
    /**
 	* The board of the game, stored as a one dimension array.
 	*/
-	private String[] board;
+	private CellValue[] board;
 
 
    /**
@@ -53,11 +57,13 @@ public class TicTacToeGame {
 	public TicTacToeGame(){
 
 		// YOUR CODE HERE 
+		gameState = GameState.PLAYING;
 		level = 0;
 		lines = 3;
 		columns = 3;
 		int sizeWin = 3;
-		board=new String[3*3];
+		board=new CellValue[3*3];
+		Arrays.fill(board, CellValue.EMPTY)
 
 
 
@@ -75,11 +81,12 @@ public class TicTacToeGame {
 	public TicTacToeGame(int lines, int columns){
 
 		// YOUR CODE HERE 
+		gameState = GameState.PLAYING;
 		level = 0;
 		this.lines = lines;
 		this.columns = columns;
 		sizeWin = 3;
-		board = new String[lines*columns];
+		board = new CellValue[lines*columns];
 
 	}
 
@@ -97,11 +104,12 @@ public class TicTacToeGame {
 	public TicTacToeGame(int lines, int columns, int sizeWin){
 
 		// YOUR CODE HERE 
+		gameState = GameState.PLAYING;
 		level = 0;
 		this.lines = lines;
 		this.columns = columns;
 		this.sizeWin = sizeWin;
-		board = new String[lines*columns];
+		board = new CellValue[lines*columns];
 
 	}
 
@@ -180,13 +188,14 @@ public class TicTacToeGame {
 
 		// YOUR CODE HERE 
 
-		//If current level is even, return O as thats the next level
-		if (level % 2 == 0){
-			return gameState.O;
-
+		//If current level is even, return X as X plays on all even number, odd for O
+		CellValue nextPlay;
+		if (level % 2){
+			nextPlay = GameState.X;
 		} else {
-			return gameState.X;
+			nextPlay = GameState.O;
 		}
+		return nextPlay;
 	}
 
    /**
@@ -202,7 +211,11 @@ public class TicTacToeGame {
 	public CellValue valueAt(int i) {
 
 		// YOUR CODE HERE 
-
+		if (board[i] != null){
+				System.out.println("This move is invalid, already played");
+			}
+			
+		return board[i];
 	}
 
    /**
@@ -227,6 +240,24 @@ public class TicTacToeGame {
 
 
 		// YOUR CODE HERE 
+		boolean winner;
+
+		CellValue pos = CellValue(i);
+		if (!(0 <= i <= lines*columns)) {
+			System.out.println("Please try again, not a valid index");
+		} else if (pos != CellValue.EMPTY) {
+			System.out.println("Please try again, position is taken");
+		} else {
+			board[i] = nextCellValue();
+
+		}
+
+		if ((verticalWin(i) || horizontal )
+
+
+		
+		
+
 
 
 	
@@ -256,6 +287,8 @@ public class TicTacToeGame {
 		// YOUR CODE HERE 
 
 
+
+
 	}
 
 
@@ -274,5 +307,35 @@ public class TicTacToeGame {
 
 	}
 
-	//Implement winning functions here
+	//Implement winning functions here, will be put in play function utilizing i index for position
+	private boolean verticalWin(int i){
+		int counter = 0;
+		CellValue currPlayer = nextCellValue();
+
+		for (int x = 1; x < columns+1; i++){
+			//while (x* (i - columns) != )
+			//(i % col - x >= 0 )  
+
+			//This checks if the position above is not the top row, and if same value for run
+			if (i % col - x <= 0 && board[x * (i - columns)] == currPlayer){
+				counter++;
+			} else {
+				break;
+			}
+		}
+		return counter == sizeWin;
+	}
+
+	private boolean horizontalWin(int i){
+
+	}
+
+	private boolean LRDiagonalWin(int i){
+		
+	}
+
+
+	// FOr diagonals, make it check if it hits the side/top/bottom 
+
+
 }
