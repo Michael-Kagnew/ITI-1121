@@ -53,7 +53,7 @@ public class TicTacToe{
 
 
         // YOUR CODE HERE
-        while (game.getGameState() == GameState.PLAYING){
+        while (game.getGameState().equals(GameState.PLAYING)){
           if (game.getLevel()%2 == 0){
             System.out.print("X to play: ");
 
@@ -68,7 +68,11 @@ public class TicTacToe{
             //    myNum = Integer.parseInt(console.readLine());
                 
             } else {
-                game.play(myNum);
+                myNum=myNum-1;
+               // game.play(myNum);
+                for (CellValue x: game.getBoard()){
+                    System.out.println(x.name());
+                }
 
             }
             

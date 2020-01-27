@@ -1,12 +1,14 @@
 
 import java.lang.StringBuilder;
 import java.io.Console;
-
+import java.util.Arrays;
 public class Test2{
+		String[] board = new String[10];
+		Arrays.fill(board, "0");
 	public  String toString(){
-			String[] arr = new String[] {"h", "a", "b" , "c"};
+		
 		int col = 2;
-		int row = 4;
+		int row = 5;
 		StringBuilder str=new StringBuilder();
 				StringBuilder bigONE=new StringBuilder();
 
@@ -26,9 +28,10 @@ public class Test2{
 			
 			for (int i = 0; i < col; i++){
 				if (i != col-1){
-					bigONE.append(" X " + "|");	
+					if ()
+					bigONE.append(board[count] + "|");	
 				} else {
-					bigONE.append(" "+"X");
+					bigONE.append(" "+board[count]);
 				}
 				count++;
 			}

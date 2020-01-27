@@ -55,6 +55,10 @@ public class TicTacToeGame {
 	* default constructor, for a game of 3x3, which must
 	* align 3 cells
 	*/
+
+	public getBoard(){
+		return board;
+	}
 	public TicTacToeGame(){
 
 		// YOUR CODE HERE 
@@ -331,9 +335,10 @@ public class TicTacToeGame {
 			}
 			
 			for (int i = 0; i < columns; i++){
-				if (i != columns- 1){
+				if (i != columns- 1){ //This is to make sure that last column doesn't have | in it
 					if (board[count] == CellValue.EMPTY){
-						mainStr.append("   " + "|");
+						//mainStr.append("   " + "|");
+						mainStr.append("EMPTY" + "|");
 					}else{
 						mainStr.append(" " + board[count].name()+ " " + "|");
 					}
