@@ -9,7 +9,8 @@
  			Michael Kagnew, Univeristy of Ottawa
 
  */
-import Java.Util.Arrays;
+import  java.util.Arrays;
+
 
 public class TicTacToeGame {
 
@@ -63,7 +64,7 @@ public class TicTacToeGame {
 		columns = 3;
 		int sizeWin = 3;
 		board=new CellValue[3*3];
-		Arrays.fill(board, CellValue.EMPTY)
+		Arrays.fill(board, CellValue.EMPTY);
 
 
 
@@ -87,8 +88,8 @@ public class TicTacToeGame {
 		this.columns = columns;
 		sizeWin = 3;
 		board = new CellValue[lines*columns];
-
-	}
+		Arrays.fill(board, CellValue.EMPTY);	
+		}
 
    /**
 	* constructor allowing to specify the number of lines
@@ -110,6 +111,7 @@ public class TicTacToeGame {
 		this.columns = columns;
 		this.sizeWin = sizeWin;
 		board = new CellValue[lines*columns];
+		Arrays.fill(board, CellValue.EMPTY);
 
 	}
 
@@ -190,10 +192,10 @@ public class TicTacToeGame {
 
 		//If current level is even, return X as X plays on all even number, odd for O
 		CellValue nextPlay;
-		if (level % 2){
-			nextPlay = GameState.X;
+		if (level % 2 == 0){
+			nextPlay = CellValue.X;
 		} else {
-			nextPlay = GameState.O;
+			nextPlay = CellValue.O;
 		}
 		return nextPlay;
 	}
@@ -211,11 +213,15 @@ public class TicTacToeGame {
 	public CellValue valueAt(int i) {
 
 		// YOUR CODE HERE 
-		if (board[i] != null){
-				System.out.println("This move is invalid, already played");
-			}
-			
-		return board[i];
+		CellValue pos;
+		if (board[i] != CellValue.EMPTY || i<0 || i>=board.length){
+				System.out.println("This move is invalid");
+				pos = CellValue.EMPTY;
+		} else{
+			pos = board[i];
+		}	
+		return pos;
+		
 	}
 
    /**
@@ -238,29 +244,23 @@ public class TicTacToeGame {
   	*/
 	public void play(int i) {
 
-
 		// YOUR CODE HERE 
 		boolean winner;
 
-		CellValue pos = CellValue(i);
-		if (!(0 <= i <= lines*columns)) {
+		//Checks if selected cell is in the board, and if it is empty
+		System.out.println(toString());
+		if (! (0 <= i && i <= board.length-1)) {
 			System.out.println("Please try again, not a valid index");
-		} else if (pos != CellValue.EMPTY) {
+
+		} else if (board[i] != CellValue.EMPTY) {
 			System.out.println("Please try again, position is taken");
 		} else {
-			board[i] = nextCellValue();
+			CellValue pos = valueAt(i); //Idk if this is needed
+			board[i] = nextCellValue(); //Puts the value that the user to put onto the board
+			setGameState(i); //Is checking if there are any winners, setting the gameState accordingly
 
 		}
 
-		if ((verticalWin(i) || horizontal )
-
-
-		
-		
-
-
-
-	
 	}
 
 
@@ -282,13 +282,21 @@ public class TicTacToeGame {
   	*/
 
 
-	private void setGameState(int i){
+	private void setGameState(int i)  {
 
 		// YOUR CODE HERE 
-
-
-
-
+		//Whoever wins, set the win to that person
+		if ((verticalWin(i) || horizontalWin(i) || FDiagonalWin(i) || BDiagonalWin(i)) == true){
+			gameState = whoWins();
+		
+		} else if (Arrays.asList(board).contains(CellValue.EMPTY) == false){
+			gameState = GameState.DRAWN;
+			System.out.println("The game is a draw");
+		
+		} else {
+			gameState = GameState.PLAYING;
+		}
+		level++;
 	}
 
 
@@ -304,34 +312,164 @@ public class TicTacToeGame {
 	public String toString(){
 
 		// YOUR CODE HERE 
+		
+		StringBuilder str=new StringBuilder();
+		StringBuilder mainStr=new StringBuilder();
 
+		for (int i = 0; i< (4*columns-1); i++){
+			str.append("-");
+		}
+
+		int count = 0;
+		for (int x=0; x < lines; x++){
+			//System.out.println( (col-1)*("    "+ "|") );
+
+			if (x>0 && x<lines){
+			mainStr.append(str);
+			mainStr.append("\n");
+
+			}
+			
+			for (int i = 0; i < columns; i++){
+				if (i != columns- 1){
+					if (board[count] == CellValue.EMPTY){
+						mainStr.append("   " + "|");
+					}else{
+						mainStr.append(" " + board[count].name()+ " " + "|");
+					}
+				
+				} else {
+					if (board[count] == CellValue.EMPTY){
+						mainStr.append(" ");
+
+					} else{
+						mainStr.append(" "+ board[count].name());
+
+					}
+
+				}
+				count++;	
+			}
+			mainStr.append("\n");
+		}
+		return mainStr.toString();
 	}
+
+	
 
 	//Implement winning functions here, will be put in play function utilizing i index for position
 	private boolean verticalWin(int i){
 		int counter = 0;
 		CellValue currPlayer = nextCellValue();
+		boolean flag = true;
+		int x = 1; //Use this to go up vetically
+		int y = 1; // Use this to go down vertically
+		//for (int x = 1; x < columns+1; i++){
+		while (flag){
+			//This checks if the position above is not the top row, and if same value for run
+			if (i / columns - x >= 0 && board[ i - x*columns] == currPlayer){
+				counter++;
+				x++;
 
-		for (int x = 1; x < columns+1; i++){
+			} else if (i / columns + x <= lines && board[i + y*columns] == currPlayer){
+				counter++;
+				y++;
+			}
+			 else {
+				flag = false;
+			}
+		}
+
 			//while (x* (i - columns) != )
 			//(i % col - x >= 0 )  
 
+		
+			
+		return counter == sizeWin;
+	}
+
+	private boolean horizontalWin(int i){
+		int counter = 1;
+		CellValue currPlayer = nextCellValue();
+		boolean flag = true;
+		int x = 1; //Use this to go up vetically
+		int y = 1;
+
+		while (flag){
 			//This checks if the position above is not the top row, and if same value for run
-			if (i % col - x <= 0 && board[x * (i - columns)] == currPlayer){
+			if (i % columns - x >= 0 && board[ i - x] == currPlayer){
 				counter++;
-			} else {
-				break;
+				x++;
+
+			} else if (i % columns + y <= columns && board[i + y] == currPlayer){
+				counter++;
+				y++;
+			 } else {
+				flag = false;
 			}
 		}
 		return counter == sizeWin;
 	}
 
-	private boolean horizontalWin(int i){
+	private boolean FDiagonalWin(int i){
+		int counter = 1;
+		CellValue currPlayer = nextCellValue();
+		boolean flag = true;
+		int x = 1; //Use this to go up vetically
+		int y = 1;
+
+		while (flag){
+			if (i/ columns - x >= 0    &&    i % columns + x <= columns   &&   board[i - x*(columns-1)] == currPlayer){
+			 //Checks if column to the right exists, and row above, as well as value
+				counter++;
+				x++;
+			
+			} else if (i / columns + y <= lines   &&   i% columns - y >= 0   && board[i + y*(columns-1)] == currPlayer){
+				counter++;
+				y++;
+			
+			} else {
+				flag = false;
+			}
+		}
+		return counter == sizeWin;	
+	}
+
+	private boolean BDiagonalWin(int i){
+
+		int counter = 1;
+		CellValue currPlayer = nextCellValue();
+		boolean flag = true;
+		int x = 1; //Use this to go up vetically
+		int y = 1;
+
+		while (flag){
+			if (i/ columns - x >= 0    &&    i % columns - x >= 0   &&   board[i - x*(columns+1)] == currPlayer){
+			 //Checks if column to the left exists, and row above, as well as value
+				counter++;
+				x++;
+				
+			} else if (i / columns + y <= lines   &&   i% columns + y <= columns  && board[i + y*(columns+1)] == currPlayer){
+				counter++;
+				y++;
+			
+			} else {
+				flag = false;
+			}
+		}
+		return counter == sizeWin;			
 
 	}
 
-	private boolean LRDiagonalWin(int i){
-		
+	//This method is simply to decide if X won or O won
+	private GameState whoWins(){
+		GameState winner;
+		if (level % 2 == 0){
+			winner = GameState.XWIN;
+		} else {
+			winner = GameState.OWIN;
+		}
+		return winner;
 	}
 
 

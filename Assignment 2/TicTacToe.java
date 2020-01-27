@@ -54,8 +54,24 @@ public class TicTacToe{
 
         // YOUR CODE HERE
         while (game.getGameState() == GameState.PLAYING){
+          if (game.getLevel()%2 == 0){
+            System.out.print("X to play: ");
 
-            if (game.G)
+          } else{
+            System.out.print("O to play: ");
+          }
+
+           int myNum = Integer.parseInt(console.readLine());
+
+            if(myNum < 0 && myNum > lines*columns){
+                System.out.println("Invalid index. Try again");
+            //    myNum = Integer.parseInt(console.readLine());
+                
+            } else {
+                game.play(myNum);
+
+            }
+            
         }
 
 
