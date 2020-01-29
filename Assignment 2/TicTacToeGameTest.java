@@ -413,7 +413,7 @@ public class TicTacToeGameTest {
         g.play(6);
         assertEquals(GameState.PLAYING, g.getGameState());
         g.play(8);
-        assertEquals(GameState.DRAW, g.getGameState());
+        assertEquals(GameState.DRAWN, g.getGameState());
     }
 
 

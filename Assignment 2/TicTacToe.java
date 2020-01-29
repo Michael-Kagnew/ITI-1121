@@ -22,9 +22,9 @@ public class TicTacToe{
         Console console = System.console();
         TicTacToeGame game;
         int lines, columns, win;
-        lines = 3;
-        columns = 4;
-        win = 3;
+        lines = 5;
+        columns = 5;
+        win = 5;
 
         if (args.length >= 2) {
             lines = Integer.parseInt(args[0]);
@@ -54,6 +54,9 @@ public class TicTacToe{
 
         // YOUR CODE HERE
         while (game.getGameState().equals(GameState.PLAYING)){
+          System.out.println(game.toString());
+          System.out.println(game.getGameState());
+
           if (game.getLevel()%2 == 0){
             System.out.print("X to play: ");
 
@@ -63,22 +66,32 @@ public class TicTacToe{
 
 
            int myNum = Integer.parseInt(console.readLine());
+           myNum-=1;
 
-            if(myNum < 0 && myNum > lines*columns){
+            if(myNum < 0 && myNum > lines*columns-1){
                 System.out.println("Invalid index. Try again");
             //    myNum = Integer.parseInt(console.readLine());
-                
-            } else {
-                myNum=myNum-1;
+            
+
+            } else if (game.valueAt(myNum) != CellValue.EMPTY){
+                System.out.println("Position already played");
+            } 
+            else {
                game.play(myNum);
              //   for (CellValue x: game.getBoard()){
                    // System.out.println(x.name());
-                
 
             }
             
         }
 
+        if (game.getGameState().equals(GameState.XWIN)){
+            System.out.println("Xwins!");
+        } else if (game.getGameState().equals(GameState.OWIN)){
+            System.out.println("Owins!");
+        } else{
+            System.out.println("Draw");
+        }
 
     }
 

@@ -66,7 +66,7 @@ public class TicTacToeGame {
 		level = 0;
 		lines = 3;
 		columns = 3;
-		int sizeWin = 3;
+		 sizeWin = 3;
 		board=new CellValue[3*3];
 		Arrays.fill(board, CellValue.EMPTY);
 
@@ -218,7 +218,7 @@ public class TicTacToeGame {
 
 		// YOUR CODE HERE 
 		CellValue pos;
-		if (board[i] != CellValue.EMPTY || i<0 || i>=board.length){
+		if ( i<0 || i>=board.length){
 				System.out.println("This move is invalid");
 				pos = CellValue.EMPTY;
 		} else{
@@ -252,8 +252,8 @@ public class TicTacToeGame {
 		boolean winner;
 
 		//Checks if selected cell is in the board, and if it is empty
-		System.out.println(toString());
-		if (! (0 <= i && i <= board.length-1)) {
+		//System.out.println(toString());
+		if ( i < 0 || i > board.length-1) {
 			System.out.println("Please try again, not a valid index");
 
 		} else if (board[i] != CellValue.EMPTY) {
@@ -262,6 +262,7 @@ public class TicTacToeGame {
 			CellValue pos = valueAt(i); //Idk if this is needed
 			board[i] = nextCellValue(); //Puts the value that the user to put onto the board
 			setGameState(i); //Is checking if there are any winners, setting the gameState accordingly
+			System.out.println(getGameState());
 
 		}
 
@@ -290,8 +291,9 @@ public class TicTacToeGame {
 
 		// YOUR CODE HERE 
 		//Whoever wins, set the win to that person
-		if ((verticalWin(i) || horizontalWin(i) || FDiagonalWin(i) || BDiagonalWin(i)) == true){
+		if (verticalWin(i) == true || horizontalWin(i) == true || FDiagonalWin(i) == true|| BDiagonalWin(i)== true){
 			gameState = whoWins();
+
 		
 		} else if (Arrays.asList(board).contains(CellValue.EMPTY) == false){
 			gameState = GameState.DRAWN;
@@ -362,9 +364,9 @@ public class TicTacToeGame {
 		while (counter<board.length){
 			for (int x = 0; x<columns; x++){
 			if (x != columns- 1){
-			myStr+=counter + "|";
+				myStr+=board[counter] + "|";
 			} else{
-				myStr+=counter+ "  ";
+				myStr+=board[counter]+ "  ";
 
 			}
 			counter++;
@@ -373,7 +375,7 @@ public class TicTacToeGame {
 
 			myStr+= "\n";
 
-			if (counter/columns !=lines ){
+			if (counter/columns != lines ){ //To not add the extra line at the bottom
 				for (int i = 0; i < 4*columns-1; i++){
 					myStr+="-";
 			}
@@ -389,7 +391,7 @@ public class TicTacToeGame {
 
 	//Implement winning functions here, will be put in play function utilizing i index for position
 	private boolean verticalWin(int i){
-		int counter = 0;
+		int counter = 1;
 		CellValue currPlayer = nextCellValue();
 		boolean flag = true;
 		int x = 1; //Use this to go up vetically
@@ -401,7 +403,7 @@ public class TicTacToeGame {
 				counter++;
 				x++;
 
-			} else if (i / columns + x <= lines && board[i + y*columns] == currPlayer){
+			} else if (i / columns + y < lines && board[i + y*columns] == currPlayer){
 				counter++;
 				y++;
 			}
@@ -431,7 +433,7 @@ public class TicTacToeGame {
 				counter++;
 				x++;
 
-			} else if (i % columns + y <= columns && board[i + y] == currPlayer){
+			} else if (i % columns + y < columns && board[i + y] == currPlayer){
 				counter++;
 				y++;
 			 } else {
@@ -449,12 +451,12 @@ public class TicTacToeGame {
 		int y = 1;
 
 		while (flag){
-			if (i/ columns - x >= 0    &&    i % columns + x <= columns   &&   board[i - x*(columns-1)] == currPlayer){
+			if (i/ columns - x >= 0    &&    i % columns + x < columns   &&   board[i - x*(columns-1)] == currPlayer){
 			 //Checks if column to the right exists, and row above, as well as value
 				counter++;
 				x++;
 			
-			} else if (i / columns + y <= lines   &&   i% columns - y >= 0   && board[i + y*(columns-1)] == currPlayer){
+			} else if (i / columns + y < lines   &&   i% columns - y >= 0   && board[i + y*(columns-1)] == currPlayer){
 				counter++;
 				y++;
 			
@@ -479,7 +481,7 @@ public class TicTacToeGame {
 				counter++;
 				x++;
 				
-			} else if (i / columns + y <= lines   &&   i% columns + y <= columns  && board[i + y*(columns+1)] == currPlayer){
+			} else if (i / columns + y < lines   &&   i% columns + y < columns  && board[i + y*(columns+1)] == currPlayer){
 				counter++;
 				y++;
 			
@@ -503,15 +505,5 @@ public class TicTacToeGame {
 	}
 
 
-/*ublic static void main(String[] args){
 
-	TicTacToeGame ga= new TicTacToeGame();
-
-	System.out.println(ga.toString());
-
-	for (CellValue x: ga.getBoard()){
-		System.out.println(x);
-	}
-}
-*/
 }
