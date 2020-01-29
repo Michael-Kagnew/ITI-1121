@@ -4,6 +4,7 @@
  * and <b>O</b>.
  *
  * @author Guy-Vincent Jourdan, University of Ottawa
+ 			Michael Kagnew, University of Ottawa
  */
 
 enum CellValue {

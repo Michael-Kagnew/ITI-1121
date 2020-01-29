@@ -23,7 +23,7 @@ public class TicTacToe{
         TicTacToeGame game;
         int lines, columns, win;
         lines = 3;
-        columns = 3;
+        columns = 4;
         win = 3;
 
         if (args.length >= 2) {
@@ -61,6 +61,7 @@ public class TicTacToe{
             System.out.print("O to play: ");
           }
 
+
            int myNum = Integer.parseInt(console.readLine());
 
             if(myNum < 0 && myNum > lines*columns){
@@ -69,10 +70,10 @@ public class TicTacToe{
                 
             } else {
                 myNum=myNum-1;
-               // game.play(myNum);
-                for (CellValue x: game.getBoard()){
-                    System.out.println(x.name());
-                }
+               game.play(myNum);
+             //   for (CellValue x: game.getBoard()){
+                   // System.out.println(x.name());
+                
 
             }
             

@@ -56,7 +56,7 @@ public class TicTacToeGame {
 	* align 3 cells
 	*/
 
-	public getBoard(){
+	public CellValue[] getBoard(){
 		return board;
 	}
 	public TicTacToeGame(){
@@ -317,7 +317,7 @@ public class TicTacToeGame {
 
 		// YOUR CODE HERE 
 		
-		StringBuilder str=new StringBuilder();
+		/*StringBuilder str=new StringBuilder();
 		StringBuilder mainStr=new StringBuilder();
 
 		for (int i = 0; i< (4*columns-1); i++){
@@ -326,8 +326,6 @@ public class TicTacToeGame {
 
 		int count = 0;
 		for (int x=0; x < lines; x++){
-			//System.out.println( (col-1)*("    "+ "|") );
-
 			if (x>0 && x<lines){
 			mainStr.append(str);
 			mainStr.append("\n");
@@ -338,7 +336,7 @@ public class TicTacToeGame {
 				if (i != columns- 1){ //This is to make sure that last column doesn't have | in it
 					if (board[count] == CellValue.EMPTY){
 						//mainStr.append("   " + "|");
-						mainStr.append("EMPTY" + "|");
+						mainStr.append("EMP" + "|");
 					}else{
 						mainStr.append(" " + board[count].name()+ " " + "|");
 					}
@@ -357,7 +355,34 @@ public class TicTacToeGame {
 			}
 			mainStr.append("\n");
 		}
-		return mainStr.toString();
+		return mainStr.toString();*/
+		String myStr= "";
+		boolean flag = true;
+		int counter = 0;
+		while (counter<board.length){
+			for (int x = 0; x<columns; x++){
+			if (x != columns- 1){
+			myStr+=counter + "|";
+			} else{
+				myStr+=counter+ "  ";
+
+			}
+			counter++;
+
+			}
+
+			myStr+= "\n";
+
+			if (counter/columns !=lines ){
+				for (int i = 0; i < 4*columns-1; i++){
+					myStr+="-";
+			}
+			myStr+="\n";
+			}
+			
+	    }
+		
+		return myStr;
 	}
 
 	
@@ -478,7 +503,15 @@ public class TicTacToeGame {
 	}
 
 
-	// FOr diagonals, make it check if it hits the side/top/bottom 
+/*ublic static void main(String[] args){
 
+	TicTacToeGame ga= new TicTacToeGame();
 
+	System.out.println(ga.toString());
+
+	for (CellValue x: ga.getBoard()){
+		System.out.println(x);
+	}
+}
+*/
 }
