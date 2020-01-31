@@ -255,17 +255,30 @@ public class TicTacToeGame {
 
 		// YOUR CODE HERE
 		// Whoever wins, set the win to that person
+
 		if (verticalWin(i) == true || horizontalWin(i) == true || FDiagonalWin(i) == true || BDiagonalWin(i) == true) {
-			gameState = whoWins();
-
-		} else if (Arrays.asList(board).contains(CellValue.EMPTY) == false) {
-			gameState = GameState.DRAWN;
-
-		} else {
-			gameState = GameState.PLAYING;
+			if (gameState == GameState.PLAYING){
+				gameState = whoWins();
+			}
+		
+		}else{
+			boolean flag = true;
+			for (CellValue x: board){
+				if (x == CellValue.EMPTY){
+					flag = false;
+				}
+			}
+			if (flag == true){
+				gameState = GameState.DRAWN;
+			}
 		}
+			
+		
 		level++;
-	}
+	
+    }
+    
+
 
 	/**
 	 * Returns a String representation of the game matching the example provided in
