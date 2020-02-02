@@ -2,6 +2,7 @@ public class Rational {
 
     private int numerator;
     private int denominator;
+    private static int commonden;
 
     // constructors
 
@@ -16,8 +17,22 @@ public class Rational {
         this.numerator = numerator;
         this.denominator = denominator;
 
-        reduce();
+          if (numerator > denominator){
 
+            for (int x = denominator; x>0; x--){
+                if (numerator%x == 0 && denominator%x == 0){
+                   this.numerator/=x;
+                   this.denominator/=x;
+                }
+            }
+        } else{
+             for (int x = numerator; x>0; x--){
+                if (numerator%x == 0 && denominator%x == 0){
+                    this.numerator/=x;
+                    this.denominator/=x;
+                }
+            }
+        }
 
     }
 
@@ -36,11 +51,12 @@ public class Rational {
     public Rational plus(Rational other) {
 	     // Your code here
         Rational sum;
+        commonden = other.denominator * denominator;
+        int num = numerator*other.denominator + other.numerator*denominator;
+        //int den = denominator + other. numerator;
 
-        int num = numerator + other.numerator;
-        int den = denominator + other. numerator;
-
-        sum = new Rational(num, den);
+        sum = new Rational(num, commonden);
+        sum.reduce();
 
         return sum;
     }
@@ -48,12 +64,12 @@ public class Rational {
     public static Rational plus(Rational a, Rational b) {
     	// Your code here
         Rational sum;
+        commonden = a.denominator * b.denominator;
+        int num = a.numerator*b.denominator + b.numerator*a.denominator;
+      //  int den = a.denominator + b.denominator;
 
-        int num = a.numerator + b.numerator;
-        int den = a.denominator + b.denominator;
-
-        sum = new Rational (num,den);
-
+        sum = new Rational(num, commonden);
+        sum.reduce();
 
         return sum;
     }
@@ -96,12 +112,12 @@ public class Rational {
     }
 
     public int compareTo(Rational other) {
-      // Your code here
+      return (numerator* other.denominator - other.numerator * denominator);
     }
 
-    public boolean equals(Rational other) {
+    public boolean equals(Rational other){
       // Your code here
-        return (other.numerator == numerator && denominator == other.denominator);
+      return (numerator *other.denominator == other.numerator * denominator); 
     }
 
     public String toString() {
