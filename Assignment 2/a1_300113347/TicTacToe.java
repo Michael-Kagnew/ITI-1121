@@ -24,8 +24,8 @@ public class TicTacToe {
         Console console = System.console();
         TicTacToeGame game;
         int lines, columns, win;
-        lines = 5;
-        columns = 5;
+        lines = 3;
+        columns = 3;
         win = 3;
 
         if (args.length >= 2) {
@@ -55,7 +55,6 @@ public class TicTacToe {
 
         while (game.getGameState().equals(GameState.PLAYING)) {
             System.out.println(game.toString());
-            System.out.println(game.getGameState());
 
             if (game.getLevel() % 2 == 0) {
                 System.out.print("X to play: ");
@@ -79,12 +78,13 @@ public class TicTacToe {
 
         }
 
+        System.out.println(game.toString());
         if (game.getGameState().equals(GameState.XWIN)) {
-            System.out.println("Xwins!");
+            System.out.println("Result: Xwins!");
         } else if (game.getGameState().equals(GameState.OWIN)) {
-            System.out.println("Owins!");
+            System.out.println("Result: Owins!");
         } else {
-            System.out.println("Draw");
+            System.out.println("Result: Draw");
         }
 
     }

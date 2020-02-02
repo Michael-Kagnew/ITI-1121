@@ -223,7 +223,6 @@ public class TicTacToeGame {
 		boolean winner;
 
 		// Checks if selected cell is in the board, and if it is empty
-		// System.out.println(toString());
 		if (i < 0 || i > board.length - 1) {
 			System.out.println("Value must be between " + 1 + "and " + board.length);
 
