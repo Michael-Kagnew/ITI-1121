@@ -102,11 +102,31 @@ public class TicTacToeGame {
     *  the index of the next move.
   	*/
 
+   	private GameState copy(TicTacToeGame base){
+   		return base.gameState;
+   	}
 	public TicTacToeGame(TicTacToeGame base, int next){
 
 
 		// YOUR CODE HERE
-
+/*		TicTacToeGame b = new TicTacToeGame(3,3,3);
+		
+		b.gameState= copy(base);
+		b.level = base.level;
+		b.play(next);
+	
+*/		//TicTacToeGame copy =base;
+		level = base.level;
+		columns = base.columns;
+		sizeWin = base.sizeWin;
+		lines = base.lines;
+		gameState = copy(base);
+		board = new CellValue[columns*lines];
+		for (int x = 0; x < board.length; x++){
+			board[x] = base.board[x];
+		}
+		
+		play(next);
 	}
 
 
@@ -121,6 +141,19 @@ public class TicTacToeGame {
 	public boolean equals(TicTacToeGame other) {
 
 		// YOUR CODE HERE
+		if (other = null){
+			return false;
+		}
+
+		if (other.getClass() != getClass()){
+			return false;
+
+		}
+
+
+		return (columns == other.columns && lines == other.lines && 
+				sizeWin == other.sizeWin && 
+			);
 
 	}
 

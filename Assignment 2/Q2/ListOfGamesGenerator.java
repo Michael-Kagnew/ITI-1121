@@ -19,6 +19,10 @@ public class ListOfGamesGenerator {
 	public static LinkedList<LinkedList<TicTacToeGame>> generateAllGames(int lines, int columns, int winLength){
 
 		//YOUR CODE HERE
+    LinkedList<LinkedList<TicTacToeGame>> myList = new LinkedList<LinkedList<TicTacToeGame>> ();
+    TicTacToeGame base = new TicTacToeGame(lines, columns, winLength);
+    while ()
+
 
 	}
 }
