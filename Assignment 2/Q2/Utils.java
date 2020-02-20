@@ -1,3 +1,7 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
 import java.util.Random;
 import java.io.Console;
 

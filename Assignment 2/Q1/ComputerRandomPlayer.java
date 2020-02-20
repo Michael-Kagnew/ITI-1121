@@ -1,6 +1,10 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 1
 public class ComputerRandomPlayer implements Player{
 
-	//Clarify part about each random choice having equal chance
 		public void play(TicTacToeGame o){
 		
 		int numPlay;  

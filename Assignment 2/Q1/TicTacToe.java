@@ -1,4 +1,8 @@
-
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 1
 
 public class TicTacToe{
 
@@ -66,36 +70,19 @@ public class TicTacToe{
         boolean firstGo = true;
         boolean cont = true;
         int firstP= Utils.generator.nextInt(2);
-        //TEST OUT IMPLEMENTATION OF HUMANPLAYER AND ROBOT
         while(game.getGameState().equals(GameState.PLAYING) && cont == true){
             
-            if (true){ //Will set this to false after first game ends
-             
-             /*   if (game.getLevel() % 2 == 0){
-                    player[firstP].play(game); //Based off randomizer, this person will play first
-
-                } else { //This is for the peson that goes next, has to check to see who is the one who didn't go first
-                    if (firstP == 0){
-                      player[1].play(game);  
-                    } else {
-                        player[0].play(game);
-                    }
-                 
-                  }*/
+           // if (true){ //Will set this to false after first game ends
+         
                   players[(game.getLevel() + firstP) % 2].play(game); //WIll always alternate
                 
                 if (!(game.getGameState().equals(GameState.PLAYING))) {
-                    System.out.println("Result: " + game.getGameState())
+                    System.out.println("Result: " + game.getGameState());
                     System.out.println("would you like to continue? Type yes or no");
                     String ans = Utils.console.readLine().strip();
 
-                    //Switches the positions, no need to change anything. Should we change firstP instead?
+                    //Changes firstP to alternate
                     if (ans.equals("yes")){
-                        //firstGo == false;
-                       /* Player temp = players[1];
-                        players[1] = new players[0].getClass();
-                        players[0] = new temp.getClass();
-                    */
                         firstP = (firstP == 1) ? 0: 1;
                         game = new TicTacToeGame(lines, columns, win);
                     } else {
@@ -105,16 +92,7 @@ public class TicTacToe{
                 }   
 
 
-             } /*else {
-                  if (game.getLevel() % 2 == 0){
-                    player[0].play(game); //Based off randomizer, this person will play first
-
-                  } else { //This is for the peson that goes next, has to check to see who is the one who didn't go first
-                    player[1].play(game);
-                    }
-                 
-                  }*/
-
+            // } 
             }
 
         }

@@ -1,3 +1,9 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 2
+
 /**
  * The class <b>TicTacToeGame</b> is the
  * class that implements the Tic Tac Toe Game.
@@ -6,6 +12,7 @@
  * the game as players are making moves.
  *
  * @author Guy-Vincent Jourdan, University of Ottawa
+ * @author Michael Kagnew
  */
 public class TicTacToeGame {
 
@@ -102,27 +109,19 @@ public class TicTacToeGame {
     *  the index of the next move.
   	*/
 
-   	private GameState copy(TicTacToeGame base){
-   		return base.gameState;
-   	}
+ 
 	public TicTacToeGame(TicTacToeGame base, int next){
 
 
 		// YOUR CODE HERE
-/*		TicTacToeGame b = new TicTacToeGame(3,3,3);
-		
-		b.gameState= copy(base);
-		b.level = base.level;
-		b.play(next);
-	
-*/		//TicTacToeGame copy =base;
+
 		level = base.level;
 		columns = base.columns;
 		sizeWin = base.sizeWin;
 		lines = base.lines;
-		gameState = copy(base);
+		gameState = base.gameState; //Enums act like primitive values; pass by value 
 		board = new CellValue[columns*lines];
-		for (int x = 0; x < board.length; x++){
+		for (int x = 0; x < board.length; x++){ 
 			board[x] = base.board[x];
 		}
 		
@@ -141,7 +140,7 @@ public class TicTacToeGame {
 	public boolean equals(TicTacToeGame other) {
 
 		// YOUR CODE HERE
-		if (other = null){
+		if (other == null){
 			return false;
 		}
 
@@ -149,11 +148,14 @@ public class TicTacToeGame {
 			return false;
 
 		}
-
+		for (int x = 0; x < board.length; x++){
+			if (board[x] != other.board[x]){
+				return false;
+			}
+		}
 
 		return (columns == other.columns && lines == other.lines && 
-				sizeWin == other.sizeWin && 
-			);
+				sizeWin == other.sizeWin && level == other.level);
 
 	}
 

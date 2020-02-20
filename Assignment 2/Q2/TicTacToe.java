@@ -1,3 +1,9 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 2
+
 import java.util.LinkedList;
 
 public class TicTacToe{
@@ -7,8 +13,8 @@ public class TicTacToe{
 
         StudentInfo.display();
 
-        int lines = 3;
-        int columns = 3;
+        int lines = 2;
+        int columns = 5;
         int win = 3;
 
    
