@@ -1,0 +1,19 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 2
+/**
+ * An enum class that defines the
+ * values <b>PLAYING</b>,  <b>DRAW</b>,
+ *  <b>XWIN</b> and <b>OWIN</b>
+ *
+ * @author Guy-Vincent Jourdan, University of Ottawa
+ */
+
+public enum GameState{
+	PLAYING,
+	DRAW,
+	XWIN,
+	OWIN
+}

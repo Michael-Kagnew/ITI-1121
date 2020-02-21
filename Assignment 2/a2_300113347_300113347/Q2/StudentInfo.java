@@ -1,9 +1,15 @@
+// Author: Michael Kagnew
+// Student number: 300113347
+// Course: ITI 1121-A
+// Assignment: 2
+// Question 2
 /**
 * Contains a method <code>void display()</code> that all the <code>main</code>
 * methods call to show the student information. Fill the box with your personal
 * information.
 *
 * @author Marcel Turcotte (marcel.turcotte@uottawa.ca)
+* @author Michael Kagnew 
 */
 
 public class StudentInfo {
@@ -12,6 +18,7 @@ public class StudentInfo {
     * Displays the student information: student name, id, section, etc for each
     * member of the team.
     */
+
 
     public static void display() {
 
@@ -22,6 +29,7 @@ public class StudentInfo {
         System.out.println("* Assignment 2                                              *");
         System.out.println("************************************************************");
         System.out.println();
+
     }
 
 }
