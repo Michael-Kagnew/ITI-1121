@@ -51,11 +51,11 @@ public class Utils {
         if (transformedBoard == null){
             throw new IllegalStateException("cannot have a null board to rotate");
         }
-        if (Math.sqrt(transformedBoard.length) != lines){
-            throw new IllegalArgumentException("no point in rotating non square board");
+        if (lines != columns){
+            throw new IllegalStateException("no point in rotating non square board");
         }
         if (lines<1 || columns<1){
-            throw new IllegalStateException("Cannot have negative lines or columns");
+            throw new IllegalArgumentException("Cannot have negative lines or columns");
         }
 
         int[] temp= new int[transformedBoard.length];

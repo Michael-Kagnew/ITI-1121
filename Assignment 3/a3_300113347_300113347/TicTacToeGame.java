@@ -512,29 +512,26 @@ public class TicTacToeGame {
   		// YOUr CODE HERE
   		//reset();
   		if (other == null){
-  			throw new NullPointerException("Board is not initialized");
+  			return false;
   		}
 
-  		/*TicTacToeGame symBoard = new TicTacToeGame(lines, columns, sizeWin);
-  		reset();*/
-  /*		while (hasNext()){
-  			next();
-  			for (int x = 0; x < board.length; x++){
-  				symBoard.board[x] = board[transformedBoard[x]]; //Created another board, that will contain the transformed board that will be compared to other
-  			}
-  			
-  			if(symBoard.equals(other)){
-  				return true;
-  			}
-  		}*/
-  		boolean flag = false; //Return this to indicate if the two are the same, set to true
+  		if((level != other.level) 	||
+    		(lines != other.lines) 	||
+    		(columns != other.columns)||
+    		(sizeWin != other.sizeWin)){
+    		return false;
+    	}
+ 
+  		boolean flag = false; //Return this to indicate if the two are the same, false means the 
   		reset();
+
+  		//essentially, if there ever is a symmetry, the flag is true and breaks 
   		while(hasNext() && flag == false){
   			next();
   			flag = true;
   			for(int x = 0; x <board.length; x++){
 
-  				if(!board[transformedBoard[x]].equals(other.board[x])){
+  				if(!board[transformedBoard[x]].equals(other.board[x])){ // This means that there is a square that is not the same
   					flag = false;
 
   				}
