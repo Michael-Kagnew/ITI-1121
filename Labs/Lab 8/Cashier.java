@@ -32,12 +32,12 @@ public class Cashier{
 
 
 			if (!queue.isEmpty()){
+				
 				if(currentCustomer == null){
 				currentCustomer = queue.dequeue();
 				totalItemsServed+=currentCustomer.getNumberOfItems();
 				customersServed++;
 				totalCustomerWaitTime += currentTime- currentCustomer.getArrivalTime() ;	
-					System.out.println(currentCustomer.getNumberOfItems() + "this is number of items of current");
 				}
 			
 			} else{
@@ -45,10 +45,8 @@ public class Cashier{
 			}
 
 			currentCustomer.serve();
-			//totalItemsServed++;
 
 			if (currentCustomer.getNumberOfItems() == 0){
-				//totalItemsServed += currentCustomer.getNumberOfServedItems();
 				currentCustomer = null;
 				
 
