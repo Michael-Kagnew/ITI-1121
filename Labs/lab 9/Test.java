@@ -4,7 +4,7 @@ import java.io.IOException;
 public class Test {
 
 	public static void main(String[] args) throws IOException{
-/*	InputStreamReader in = new InputStreamReader( System.in );
+	InputStreamReader in = new InputStreamReader( System.in );
 
 	char[] buffer = new char[ 256 ];  
                  int num = in.read( buffer );  
@@ -12,9 +12,5 @@ public class Test {
 
      System.out.println((char) num);
 	}	
-*/
-	  int b;
-      while( (b = System.in.read() ) != -1)
-          System.out.print((char)b);
-}
+
 }
