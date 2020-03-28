@@ -9,12 +9,12 @@ public class Copy {
         FileOutputStream output = null;
 
         try{
-            input = new InputStreamReader( new FileInputStream( fileName ) ); //open file
+            input = new InputStreamReader( new FileInputStream( fileName ) ); //open actual file, read it in byte code, then character
         
         output = new FileOutputStream(new File(outputFileName)); //Pass the file name. Is in byte information    
        
         int c;
-        while ( ( c = input.read() ) != -1 ) {  //we read character by character
+        while ( ( c = input.read() ) != -1 ) {  //we read character by character since using InputStreamReader
             output.write(c);         //Write contents into char values (readablke)
         }
  

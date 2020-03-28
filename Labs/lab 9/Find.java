@@ -13,7 +13,8 @@ public class Find {
     
     //create your BufferedReader
     //Reads into byte info, then character info, then into lines
-    input =new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+    input =new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));  //Buffered allows for greater efficiency, putting whole characters into a buffer, instead of 
+                                                                                      //Single characters only
 
 
         
@@ -31,7 +32,7 @@ public class Find {
 
 */
         //Substring part
-        while((line = input.readLine()) != null){//Reads the file line by line 
+        while((line = input.readLine()) != null){//Reads the file line by line (THANKS TO BUFFERED STREAM CAN DO THIS)
         
           while(line.indexOf(word) != -1) { //If the word exists
             count++;
